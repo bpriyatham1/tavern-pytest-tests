@@ -25,7 +25,7 @@ def test_weather_by_id_endpoint():
 
 
 def test_weather_of_all_cities_endpoint():
-    response = requests.get(ENDPOINT, auth=('peter', 'peter123'))
+    response = requests.get(ENDPOINT, auth=('admin', 'admin123'))
     assert response.status_code == 200
     pass
 
