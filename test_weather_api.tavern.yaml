@@ -1,0 +1,116 @@
+test_name: Create weather for munich city via weather api
+
+marks:
+  - usefixtures:
+      - admin_token
+
+stages:
+  - name: Create weather for munich city
+    #Input request and headers
+    request:
+      url: http://localhost:8080/weather
+      method: POST
+      headers:
+        content-type: application/json
+        authorization: "{admin_token}"
+      json:
+        date: "2023-03-14"
+        lat: 123.1
+        lon: 123.2
+        city: Munich
+        state: Germany
+        temperatures: [ 21.8 ]
+    #Expected response code and body
+    response:
+      status_code: 201
+      json:
+        id: 1
+        date: "2023-03-14T00:00:00.000+00:00"
+        lat: 123.1
+        lon: 123.2
+        city: Munich
+        state: Germany
+        temperatures: [ 21.8 ]
+      save:
+        json:
+          city_id: id
+  - name: Fetch the weather with above created munich city
+    #Input request and headers
+    request:
+      url: http://localhost:8080/weather/{city_id}
+      method: GET
+      headers:
+        content-type: application/json
+    #Expected response code and body
+    response:
+      status_code: 200
+      json:
+        id: 1
+        date: "2023-03-15"
+        lat: 123.1
+        lon: 123.2
+        city: Munich
+        state: Germany
+        temperatures: [ 21.8 ]
+
+---
+
+test_name: Fetch the weather when ID equals 1 via weather api
+
+stages:
+  - name: Fetch the weather when ID equals 1
+    #Input request and headers
+    request:
+      url: http://localhost:8080/weather/1
+      method: GET
+      headers:
+        content-type: application/json
+    #Expected response code and body
+    response:
+      status_code: 200
+      json:
+        id: 1
+        date: "2023-03-15"
+        lat: 123.1
+        lon: 123.2
+        city: Munich
+        state: Germany
+        temperatures: [ 21.8 ]
+
+---
+
+test_name: Fetch the weather for all available cities via weather api
+
+marks:
+  - usefixtures:
+      - admin_token
+
+stages:
+  - name: Fetch the weather for all available cities
+    #Input request and headers
+    request:
+      url: http://localhost:8080/weather
+      method: GET
+      headers:
+        authorization: "{admin_token}"
+        content-type: application/json
+    #Expected response status code and body
+    response:
+      status_code: 200
+      json: [ { "id": 1,"date": "2023-03-15","lat": 123.1,"lon": 123.2,"city": "Munich","state": "Germany","temperatures": [ 21.8 ] } ]
+
+---
+test_name: Fetch weather of an unknown city via weather api
+
+stages:
+  - name: Create weather for unknown city
+    #Input request and headers
+    request:
+      url: http://localhost:8080/weather/unknown
+      method: GET
+      headers:
+        content-type: application/json
+    #Expected response code and body
+    response:
+      status_code: 500
+

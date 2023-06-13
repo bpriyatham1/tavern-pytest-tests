@@ -42,7 +42,7 @@ def test_weather_of_unknown_city_endpoint():
     pass
 
 
-def test_weather_of_unexisting_city_endpoint():
+def test_weather_of_unexciting_city_endpoint():
     response = requests.get(ENDPOINT + "/unknownCity")
     assert response.status_code == 400
     pass
