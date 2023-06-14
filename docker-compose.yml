@@ -1,0 +1,4 @@
+services:
+  pythonProject:
+    build: ./
+    command: py.test test_weather_api.tavern.yaml -v --html=report.html

@@ -51,7 +51,9 @@ Running the tests:
 
 ```pip install tavern[pytest]```
 
-```py.test weather_api_positive.tavern.yaml -v```
+```py.test test_weather_api.tavern.yaml -v --html=report.html```
+
+```pytest --html=report.html```
 
 Viewing the report:
 ![report.JPG](resources%2Freport.JPG)

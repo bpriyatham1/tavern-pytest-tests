@@ -5,7 +5,7 @@ marks:
       - admin_token
 
 stages:
-  - name: Create weather for munich city
+  - name: Create weather for munich city via post endpoint
     #Input request and headers
     request:
       url: http://localhost:8080/weather
@@ -100,10 +100,11 @@ stages:
       json: [ { "id": 1,"date": "2023-03-15","lat": 123.1,"lon": 123.2,"city": "Munich","state": "Germany","temperatures": [ 21.8 ] } ]
 
 ---
+
 test_name: Fetch weather of an unknown city via weather api
 
 stages:
-  - name: Create weather for unknown city
+  - name: Fetch weather for unknown city
     #Input request and headers
     request:
       url: http://localhost:8080/weather/unknown
@@ -113,4 +114,249 @@ stages:
     #Expected response code and body
     response:
       status_code: 500
+
+---
+test_name: Create weather for munich city via weather api  with invalid json schema
+
+marks:
+  - usefixtures:
+      - admin_token
+
+stages:
+  - name: Create weather for munich city with invalid json schema
+    #Input request and headers
+    request:
+      url: http://localhost:8080/weather
+      method: POST
+      headers:
+        content-type: application/json
+        authorization: "{admin_token}"
+      json:
+        date: "2023-03-14"
+        lat: 123.1
+        lon: 123.2
+        city: Munich
+        state: Germany
+    #Expected response code
+    response:
+      status_code: 400
+
+---
+test_name: Fetch weather of a city via weather api which is not existing
+
+stages:
+  - name: Fetch weather of a city  which is not existing
+    #Input request and headers
+    request:
+      url: http://localhost:8080/weather/999999999
+      method: GET
+      headers:
+        content-type: application/json
+    #Expected response code and body
+    response:
+      status_code: 404
+
+---
+test_name: Fetch weather of all cities via weather api with timeout of 100 milli seconds
+
+marks:
+  - usefixtures:
+      - admin_token
+
+stages:
+  - name: Test Fetch weather of all cities via GET endpoint
+    #Input request and headers
+    request:
+      url: http://localhost:8080/weather
+      method: GET
+      headers:
+        authorization: "{admin_token}"
+        content-type: application/json
+      timeout: 0.1
+    #Expected response status code and body
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+---
+
+test_name: Test admin user authorization for the get weather for all cities via weather api
+
+marks:
+  - usefixtures:
+      - admin_token
+
+stages:
+  - name: Test admin authorization for the get weather for all cities
+    #Input request and headers
+    request:
+      url: http://localhost:8080/weather
+      method: GET
+      headers:
+        authorization: "{admin_token}"
+        content-type: application/json
+      timeout: 0.5
+    #Expected response status code and body
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+---
+test_name: Test peter user authorization for the get weather for all cities via weather api
+
+marks:
+  - usefixtures:
+      - peter_token
+
+stages:
+  - name: Test peter authorization for the get weather for all cities
+    #Input request and headers
+    request:
+      url: http://localhost:8080/weather
+      method: GET
+      headers:
+        authorization: "{peter_token}"
+        content-type: application/json
+    #Expected response status code and body
+    response:
+      status_code: 403
+
+---
+
+test_name: Test no authorization for the get weather for all cities via weather api
+
+stages:
+  - name: Test no authorization for the get weather for all cities
+    #Input request and headers
+    request:
+      url: http://localhost:8080/weather
+      method: GET
+      headers:
+        content-type: application/json
+        authorization: None
+    #Expected response status code and body
+    response:
+      status_code: 401
+
+---
+
+test_name: Test the get weather by city id endpoint schema
+
+stages:
+  - name: Make sure the get weather by city id api response matches the given schema
+    #Input request and headers
+    request:
+      url: http://localhost:8080/weather/1
+      method: GET
+      headers:
+        content-type: application/json
+
+    #Expected response code and body
+    response:
+      status_code: 200
+      verify_response_with:
+        function: tavern.helpers:validate_pykwalify
+        extra_kwargs:
+          schema:
+            type: map
+            mapping:
+              id:
+                type: int
+                required: True
+              date:
+                type: timestamp
+                required: True
+              lat:
+                type: float
+                required: True
+              lon:
+                type: float
+                required: True
+              city:
+                type: str
+                required: True
+              state:
+                type: str
+                required: True
+              temperatures:
+                type: any
+                required: True
+#  Expected Json Schema response
+#  {
+#    "id": 1,
+#    "date": "2023-03-15",
+#    "lat": 123.1,
+#    "lon": 123.2,
+#    "city": "Munich",
+#    "state": "Germany",
+#    "temperatures": [
+#      21.8
+#    ]
+#  }
+
+---
+test_name: Test the post weather city endpoint schema
+
+marks:
+  - usefixtures:
+      - admin_token
+
+stages:
+  - name: Make sure the post weather by city data api response matches the given schema
+    #Input request and headers
+    request:
+      url: http://localhost:8080/weather
+      method: POST
+      headers:
+        content-type: application/json
+        authorization: "{admin_token}"
+      json:
+        date: "2023-03-14"
+        lat: 123.2
+        lon: 123.3
+        city: CapeTown
+        state: SouthAfrica
+        temperatures: [ 21.2 ]
+    #Expected response code and body
+    response:
+      status_code: 201
+      verify_response_with:
+        function: tavern.helpers:validate_pykwalify
+        extra_kwargs:
+          schema:
+            type: map
+            mapping:
+              id:
+                type: int
+                required: True
+              date:
+                type: timestamp
+                required: True
+              lat:
+                type: float
+                required: True
+              lon:
+                type: float
+                required: True
+              city:
+                type: str
+                required: True
+              state:
+                type: str
+                required: True
+              temperatures:
+                type: any
+                required: True
+#  Expected Json Schema response
+#{
+#    "id": 2,
+#    "date": "2023-03-14T00:00:00.000+00:00",
+#    "lat": 123.2,
+#    "lon": 123.3,
+#    "city": "CapeTown",
+#    "state": "SouthAfrica",
+#    "temperatures": [
+#        21.2
+#    ]
+#}
 
