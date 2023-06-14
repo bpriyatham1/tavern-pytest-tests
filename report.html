@@ -253,10 +253,10 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
 }
 </script>
     <h1>report.html</h1>
-    <p>Report generated on 14-Jun-2023 at 17:39:34 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.2.0</p>
+    <p>Report generated on 14-Jun-2023 at 18:17:08 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.2.0</p>
     <h2>Summary</h2>
-    <p>12 tests ran in 4.27 seconds. </p>
-    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="passed">11 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="failed">1 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
+    <p>12 tests ran in 1.84 seconds. </p>
+    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="passed">9 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="failed">3 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
     <h2>Results</h2>
     <table id="results-table">
       <thead id="results-table-head">
@@ -270,8 +270,82 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
       <tbody class="failed results-table-row">
         <tr>
           <td class="col-result">Failed</td>
+          <td class="col-name">test_weather_api.tavern.yaml::Create weather for munich city via weather api</td>
+          <td class="col-duration">0.56</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">Format variables:<br/>  admin_token = &#x27;Basic YWRtaW46YWRtaW4xMjM=&#x27;<br/><br/>Source test stage (line 7):<br/>  - name: Create weather for munich city via post endpoint<br/><br/>    request:<br/>      url: http://localhost:8080/weather<br/>      method: POST<br/>      headers:<br/>        content-type: application/json<br/>        authorization: &quot;{admin_token}&quot;<br/>      json:<br/>        date: &quot;2023-03-14&quot;<br/>        lat: 123.1<br/>        lon: 123.2<br/>        city: Munich<br/>        state: Germany<br/>        temperatures: [ 21.8 ]<br/><br/>    response:<br/>      status_code: 201<br/>      json:<br/>        id: 1<br/>        date: &quot;2023-03-14T00:00:00.000+00:00&quot;<br/>        lat: 123.1<br/>        lon: 123.2<br/>        city: Munich<br/>        state: Germany<br/>        temperatures: [ 21.8 ]<br/>      save:<br/>        json:<br/>          city_id: id<br/><br/>Formatted stage:<br/>  name: Create weather for munich city via post endpoint<br/>  request:<br/>    headers:<br/>      authorization: Basic YWRtaW46YWRtaW4xMjM=<br/>      content-type: application/json<br/>    json:<br/>      city: Munich<br/>      date: &#x27;2023-03-14&#x27;<br/>      lat: 123.1<br/>      lon: 123.2<br/>      state: Germany<br/>      temperatures:<br/>      - 21.8<br/>    method: POST<br/>    url: http://localhost:8080/weather<br/>  response:<br/>    json:<br/>      city: Munich<br/>      date: &#x27;2023-03-14T00:00:00.000+00:00&#x27;<br/>      id: 1<br/>      lat: 123.1<br/>      lon: 123.2<br/>      state: Germany<br/>      temperatures:<br/>      - 21.8<br/>    save:<br/>      json:<br/>        city_id: id<br/>    status_code: 201<br/><br/>Errors:<br/><span class="error">E   tavern._core.exceptions.TestFailError: Test &#x27;Create weather for munich city via post endpoint&#x27; failed:</span><br/>    - Key mismatch: (expected[&quot;id&quot;] = &#x27;1&#x27; (type = &lt;class &#x27;int&#x27;&gt;), actual[&quot;id&quot;] = &#x27;3&#x27; (type = &lt;class &#x27;int&#x27;&gt;))<br/> -------------------------------Captured log call-------------------------------- <br/>ERROR    tavern.response:response.py:44 Key mismatch: (expected[&quot;id&quot;] = &#x27;1&#x27; (type = &lt;class &#x27;int&#x27;&gt;), actual[&quot;id&quot;] = &#x27;3&#x27; (type = &lt;class &#x27;int&#x27;&gt;))
+Traceback (most recent call last):
+  File &quot;C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\site-packages\tavern\_core\dict_util.py&quot;, line 405, in check_keys_match_recursive
+    assert actual_val == expected_val  # noqa
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: assert {&#x27;city&#x27;: &#x27;Mun...&#x27;: 123.1, ...} == {&#x27;city&#x27;: &#x27;Mun...&#x27;: 123.1, ...}
+  Omitting 6 identical items, use -vv to show
+  Differing items:
+  {&#x27;id&#x27;: 3} != {&#x27;id&#x27;: 1}
+  Full diff:
+    {
+     &#x27;city&#x27;: &#x27;Munich&#x27;,
+     &#x27;date&#x27;: &#x27;2023-03-14T00:00:00.000+00:00&#x27;,...
+  
+  ...Full output truncated (10 lines hidden), use &#x27;-vv&#x27; to show
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File &quot;C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\site-packages\tavern\_core\dict_util.py&quot;, line 405, in check_keys_match_recursive
+    assert actual_val == expected_val  # noqa
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: assert 3 == 1
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File &quot;C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\site-packages\tavern\response.py&quot;, line 109, in recurse_check_key_match
+    check_keys_match_recursive(expected_block, block, [], strict)
+  File &quot;C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\site-packages\tavern\_core\dict_util.py&quot;, line 463, in check_keys_match_recursive
+    check_keys_match_recursive(
+  File &quot;C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\site-packages\tavern\_core\dict_util.py&quot;, line 549, in check_keys_match_recursive
+    raise exceptions.KeyMismatchError(
+tavern._core.exceptions.KeyMismatchError: Key mismatch: (expected[&quot;id&quot;] = &#x27;1&#x27; (type = &lt;class &#x27;int&#x27;&gt;), actual[&quot;id&quot;] = &#x27;3&#x27; (type = &lt;class &#x27;int&#x27;&gt;))<br/></div></td></tr></tbody>
+      <tbody class="failed results-table-row">
+        <tr>
+          <td class="col-result">Failed</td>
+          <td class="col-name">test_weather_api.tavern.yaml::Fetch the weather for all available cities via weather api</td>
+          <td class="col-duration">0.13</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">Format variables:<br/>  admin_token = &#x27;Basic YWRtaW46YWRtaW4xMjM=&#x27;<br/><br/>Source test stage (line 88):<br/>  - name: Fetch the weather for all available cities<br/><br/>    request:<br/>      url: http://localhost:8080/weather<br/>      method: GET<br/>      headers:<br/>        authorization: &quot;{admin_token}&quot;<br/>        content-type: application/json<br/><br/>    response:<br/>      status_code: 200<br/>      json: [ { &quot;id&quot;: 1,&quot;date&quot;: &quot;2023-03-15&quot;,&quot;lat&quot;: 123.1,&quot;lon&quot;: 123.2,&quot;city&quot;: &quot;Munich&quot;,&quot;state&quot;: &quot;Germany&quot;,&quot;temperatures&quot;: [ 21.8 ] } ]<br/><br/><br/>Formatted stage:<br/>  name: Fetch the weather for all available cities<br/>  request:<br/>    headers:<br/>      authorization: Basic YWRtaW46YWRtaW4xMjM=<br/>      content-type: application/json<br/>    method: GET<br/>    url: http://localhost:8080/weather<br/>  response:<br/>    json:<br/>    - city: Munich<br/>      date: &#x27;2023-03-15&#x27;<br/>      id: 1<br/>      lat: 123.1<br/>      lon: 123.2<br/>      state: Germany<br/>      temperatures:<br/>      - 21.8<br/>    status_code: 200<br/><br/>Errors:<br/><span class="error">E   tavern._core.exceptions.TestFailError: Test &#x27;Fetch the weather for all available cities&#x27; failed:</span><br/>    - Length of returned list was different than expected - expected 1 items from got 3 (expected = &#x27;[{&#x27;id&#x27;: 1, &#x27;date&#x27;: &#x27;2023-03-15&#x27;, &#x27;lat&#x27;: 123.1, &#x27;lon&#x27;: 123.2, &#x27;city&#x27;: &#x27;Munich&#x27;, &#x27;state&#x27;: &#x27;Germany&#x27;, &#x27;temperatures&#x27;: [21.8]}]&#x27; (type = &lt;class &#x27;list&#x27;&gt;), actual = &#x27;[{&#x27;id&#x27;: 1, &#x27;date&#x27;: &#x27;2023-03-15&#x27;, &#x27;lat&#x27;: 123.1, &#x27;lon&#x27;: 123.2, &#x27;city&#x27;: &#x27;Munich&#x27;, &#x27;state&#x27;: &#x27;Germany&#x27;, &#x27;temperatures&#x27;: [21.8]}, {&#x27;id&#x27;: 2, &#x27;date&#x27;: &#x27;2023-03-15&#x27;, &#x27;lat&#x27;: 123.2, &#x27;lon&#x27;: 123.3, &#x27;city&#x27;: &#x27;CapeTown&#x27;, &#x27;state&#x27;: &#x27;SouthAfrica&#x27;, &#x27;temperatures&#x27;: [21.2]}, {&#x27;id&#x27;: 3, &#x27;date&#x27;: &#x27;2023-03-15&#x27;, &#x27;lat&#x27;: 123.1, &#x27;lon&#x27;: 123.2, &#x27;city&#x27;: &#x27;Munich&#x27;, &#x27;state&#x27;: &#x27;Germany&#x27;, &#x27;temperatures&#x27;: [21.8]}]&#x27; (type = &lt;class &#x27;list&#x27;&gt;)<br/> -------------------------------Captured log call-------------------------------- <br/>ERROR    tavern.response:response.py:44 Length of returned list was different than expected - expected 1 items from got 3 (expected = &#x27;[{&#x27;id&#x27;: 1, &#x27;date&#x27;: &#x27;2023-03-15&#x27;, &#x27;lat&#x27;: 123.1, &#x27;lon&#x27;: 123.2, &#x27;city&#x27;: &#x27;Munich&#x27;, &#x27;state&#x27;: &#x27;Germany&#x27;, &#x27;temperatures&#x27;: [21.8]}]&#x27; (type = &lt;class &#x27;list&#x27;&gt;), actual = &#x27;[{&#x27;id&#x27;: 1, &#x27;date&#x27;: &#x27;2023-03-15&#x27;, &#x27;lat&#x27;: 123.1, &#x27;lon&#x27;: 123.2, &#x27;city&#x27;: &#x27;Munich&#x27;, &#x27;state&#x27;: &#x27;Germany&#x27;, &#x27;temperatures&#x27;: [21.8]}, {&#x27;id&#x27;: 2, &#x27;date&#x27;: &#x27;2023-03-15&#x27;, &#x27;lat&#x27;: 123.2, &#x27;lon&#x27;: 123.3, &#x27;city&#x27;: &#x27;CapeTown&#x27;, &#x27;state&#x27;: &#x27;SouthAfrica&#x27;, &#x27;temperatures&#x27;: [21.2]}, {&#x27;id&#x27;: 3, &#x27;date&#x27;: &#x27;2023-03-15&#x27;, &#x27;lat&#x27;: 123.1, &#x27;lon&#x27;: 123.2, &#x27;city&#x27;: &#x27;Munich&#x27;, &#x27;state&#x27;: &#x27;Germany&#x27;, &#x27;temperatures&#x27;: [21.8]}]&#x27; (type = &lt;class &#x27;list&#x27;&gt;)
+Traceback (most recent call last):
+  File &quot;C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\site-packages\tavern\_core\dict_util.py&quot;, line 405, in check_keys_match_recursive
+    assert actual_val == expected_val  # noqa
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: assert [{&#x27;city&#x27;: &#x27;Mu...: 123.1, ...}] == [{&#x27;city&#x27;: &#x27;Mu...: 123.1, ...}]
+  Left contains 2 more items, first extra item: {&#x27;city&#x27;: &#x27;CapeTown&#x27;, &#x27;date&#x27;: &#x27;2023-03-15&#x27;, &#x27;id&#x27;: 2, &#x27;lat&#x27;: 123.2, ...}
+  Full diff:
+    [
+     {&#x27;city&#x27;: &#x27;Munich&#x27;,
+      &#x27;date&#x27;: &#x27;2023-03-15&#x27;,
+      &#x27;id&#x27;: 1,
+      &#x27;lat&#x27;: 123.1,...
+  
+  ...Full output truncated (19 lines hidden), use &#x27;-vv&#x27; to show
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File &quot;C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\site-packages\tavern\response.py&quot;, line 109, in recurse_check_key_match
+    check_keys_match_recursive(expected_block, block, [], strict)
+  File &quot;C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\site-packages\tavern\_core\dict_util.py&quot;, line 520, in check_keys_match_recursive
+    raise exceptions.KeyMismatchError(
+tavern._core.exceptions.KeyMismatchError: Length of returned list was different than expected - expected 1 items from got 3 (expected = &#x27;[{&#x27;id&#x27;: 1, &#x27;date&#x27;: &#x27;2023-03-15&#x27;, &#x27;lat&#x27;: 123.1, &#x27;lon&#x27;: 123.2, &#x27;city&#x27;: &#x27;Munich&#x27;, &#x27;state&#x27;: &#x27;Germany&#x27;, &#x27;temperatures&#x27;: [21.8]}]&#x27; (type = &lt;class &#x27;list&#x27;&gt;), actual = &#x27;[{&#x27;id&#x27;: 1, &#x27;date&#x27;: &#x27;2023-03-15&#x27;, &#x27;lat&#x27;: 123.1, &#x27;lon&#x27;: 123.2, &#x27;city&#x27;: &#x27;Munich&#x27;, &#x27;state&#x27;: &#x27;Germany&#x27;, &#x27;temperatures&#x27;: [21.8]}, {&#x27;id&#x27;: 2, &#x27;date&#x27;: &#x27;2023-03-15&#x27;, &#x27;lat&#x27;: 123.2, &#x27;lon&#x27;: 123.3, &#x27;city&#x27;: &#x27;CapeTown&#x27;, &#x27;state&#x27;: &#x27;SouthAfrica&#x27;, &#x27;temperatures&#x27;: [21.2]}, {&#x27;id&#x27;: 3, &#x27;date&#x27;: &#x27;2023-03-15&#x27;, &#x27;lat&#x27;: 123.1, &#x27;lon&#x27;: 123.2, &#x27;city&#x27;: &#x27;Munich&#x27;, &#x27;state&#x27;: &#x27;Germany&#x27;, &#x27;temperatures&#x27;: [21.8]}]&#x27; (type = &lt;class &#x27;list&#x27;&gt;)<br/></div></td></tr></tbody>
+      <tbody class="failed results-table-row">
+        <tr>
+          <td class="col-result">Failed</td>
           <td class="col-name">test_weather_api.tavern.yaml::Fetch weather of all cities via weather api with timeout of 100 milli seconds</td>
-          <td class="col-duration">0.14</td>
+          <td class="col-duration">0.13</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
@@ -340,52 +414,7 @@ requests.exceptions.ReadTimeout: HTTPConnectionPool(host=&#x27;localhost&#x27;, 
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">test_weather_api.tavern.yaml::Create weather for munich city via weather api</td>
-          <td class="col-duration">2.55</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="empty log">No log output captured.</div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
           <td class="col-name">test_weather_api.tavern.yaml::Fetch the weather when ID equals 1 via weather api</td>
-          <td class="col-duration">0.03</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="empty log">No log output captured.</div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">test_weather_api.tavern.yaml::Fetch the weather for all available cities via weather api</td>
-          <td class="col-duration">0.15</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="empty log">No log output captured.</div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">test_weather_api.tavern.yaml::Fetch weather of an unknown city via weather api</td>
-          <td class="col-duration">0.02</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="empty log">No log output captured.</div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">test_weather_api.tavern.yaml::Create weather for munich city via weather api  with invalid json schema</td>
-          <td class="col-duration">0.19</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="empty log">No log output captured.</div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">test_weather_api.tavern.yaml::Fetch weather of a city via weather api which is not existing</td>
           <td class="col-duration">0.04</td>
           <td class="col-links"></td></tr>
         <tr>
@@ -394,8 +423,35 @@ requests.exceptions.ReadTimeout: HTTPConnectionPool(host=&#x27;localhost&#x27;, 
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
+          <td class="col-name">test_weather_api.tavern.yaml::Fetch weather of an unknown city via weather api</td>
+          <td class="col-duration">0.01</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="empty log">No log output captured.</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">test_weather_api.tavern.yaml::Create weather for munich city via weather api  with invalid json schema</td>
+          <td class="col-duration">0.13</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="empty log">No log output captured.</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">test_weather_api.tavern.yaml::Fetch weather of a city via weather api which is not existing</td>
+          <td class="col-duration">0.02</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="empty log">No log output captured.</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
           <td class="col-name">test_weather_api.tavern.yaml::Test admin user authorization for the get weather for all cities via weather api</td>
-          <td class="col-duration">0.18</td>
+          <td class="col-duration">0.13</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
@@ -404,7 +460,7 @@ requests.exceptions.ReadTimeout: HTTPConnectionPool(host=&#x27;localhost&#x27;, 
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">test_weather_api.tavern.yaml::Test peter user authorization for the get weather for all cities via weather api</td>
-          <td class="col-duration">0.17</td>
+          <td class="col-duration">0.11</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
@@ -413,7 +469,7 @@ requests.exceptions.ReadTimeout: HTTPConnectionPool(host=&#x27;localhost&#x27;, 
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">test_weather_api.tavern.yaml::Test no authorization for the get weather for all cities via weather api</td>
-          <td class="col-duration">0.05</td>
+          <td class="col-duration">0.02</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
@@ -422,7 +478,7 @@ requests.exceptions.ReadTimeout: HTTPConnectionPool(host=&#x27;localhost&#x27;, 
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">test_weather_api.tavern.yaml::Test the get weather by city id endpoint schema</td>
-          <td class="col-duration">0.10</td>
+          <td class="col-duration">0.05</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
@@ -431,7 +487,7 @@ requests.exceptions.ReadTimeout: HTTPConnectionPool(host=&#x27;localhost&#x27;, 
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">test_weather_api.tavern.yaml::Test the post weather city endpoint schema</td>
-          <td class="col-duration">0.19</td>
+          <td class="col-duration">0.13</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">

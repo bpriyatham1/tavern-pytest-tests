@@ -1,17 +1,8 @@
-FROM python:3.11.3-alpine
-
-# Labels
-LABEL maintainer="bpriyatham1@gmail.com, gmail.com"
-
-RUN pip install tavern
-
-# RUN mkdir /pytest-tavern-container/
-# ADD .  /pytest-tavern-container/
-# WORKDIR /pytest-tavern-container/
-# RUN pip install --upgrade pip
-# RUN pip install -r requirements.txt
-# RUN pip install tavern
-# ENTRYPOINT pytest -s -v -m ${GROUP} --disable-warnings
-
-
-
+FROM python:3.11.3-slim
+RUN mkdir /pythonProject/
+ADD .  /pythonProject/
+WORKDIR /pythonProject/
+RUN pip install --no-cache-dir -r requirements.txt
+ENTRYPOINT py.test test_weather_api.tavern.yaml -v --network=my-network --html=report.html
+#Below command is to run both pytest and tavern tests
+#ENTRYPOINT pytest --html=report.html

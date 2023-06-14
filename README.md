@@ -58,3 +58,12 @@ Running the tests:
 Viewing the report:
 ![report.JPG](resources%2Freport.JPG)
 ![report-html.JPG](resources%2Freport-html.JPG)
+
+
+### Docker Commands to run
+#### Run below command to create docker container 
+```docker build -t pytest-tavern-container:1.0 .```
+#### Run below command and verify if the pytest-tavern-container is listed
+```docker images```
+#### Run below command to run the container and tavern tests
+```docker run -ti pytest-tavern-container:1.0 /bin/sh```
